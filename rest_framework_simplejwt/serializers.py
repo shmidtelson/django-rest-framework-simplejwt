@@ -55,6 +55,9 @@ class TokenObtainSerializer(serializers.Serializer):
                 'no_active_account',
             )
 
+        # update last_login after getting token
+        self.user.last_login = timezone.now()
+        self.user.save()
         return {}
 
     @classmethod
